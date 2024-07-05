@@ -3,6 +3,7 @@
 
 
 
+
 template <typename T>
 
 class node {
@@ -10,6 +11,7 @@ class node {
         T data;
         node<T>* parent;
         std::vector<node<T>*> children;
+        bool visited = false;
 
     public:
         node(T data){
@@ -28,7 +30,7 @@ class node {
         void setParent(node<T>* parent){
             this->parent = parent;
         }
-        size_t getNumChildren(){
+        std::size_t getNumChildren(){
             return this->children.size();
         }
         std::vector<node<T>*> getChildren(){
@@ -37,4 +39,14 @@ class node {
         void addChild(node<T>* child){
             this->children.push_back(child);
         }
+        bool isvisited(){
+            return this->visited;
+        }
+        void setVisited(bool visited){
+            this->visited = visited;
+        }
+        void removeChildren(){
+            this->children.clear();
+        }
+        
 };
