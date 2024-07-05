@@ -6,9 +6,11 @@
 #include "node.hpp"
 
 using std::queue;
+using std::size_t;
 using std::stack;
 using std::vector;
-using std::size_t;
+using std::cout;
+using std::endl;
 
 template <typename T, size_t k = 2>
 
@@ -19,46 +21,57 @@ class index_iterator {
 
     void push_children() {
         node<T>* current = s.top();
+        vector<node<T>*> children = current->getChildren();
         s.pop();
         int i;
         for (i = current->getNumChildren() - 1; i >= 0 && i >= index; i--) {
-            s.push(current->getChildren()[i]);
+            children[i]->setVisited(false);
+            s.push(children[i]);
         }
         s.push(current);
         for (; i >= 0; i--) {
-            s.push(current->getChildren()[i]);
+            children[i]->setVisited(false);
+            s.push(children[i]);
         }
-        if (s.top()->isvisited() == false) {
-            s.top()->setVisited(true);
+        if (s.top()->isvisited() == false && s.top()->getNumChildren() > 0){
+            s.top()->setVisited();
             push_children();
         }
     }
 
    public:
     index_iterator(node<T>* root, size_t index) : index(index) {
+        if(root == nullptr){
+            s.push(nullptr);
+            return;
+        }
         if (index > k) {
             throw std::out_of_range("Index out of range");
         }
+        s.push(nullptr);
         s.push(root);
-        root->setVisited(true);
+        root->setVisited();
         push_children();
     }
     T& operator*() {
-        return s.top()->first->getData();
+        return s.top()->getData();
     }
     node<T>* operator->() {
-        return s.top()->first;
+        return s.top()->getData();
     }
     index_iterator& operator++() {
         if (s.top() == nullptr) {
             return *this;
         }
         s.pop();
-        if (s.top() != nullptr && s.top()->isvisited() == false) {
-            s.top()->setVisited(true);
+        if(s.top() == nullptr){
+            return *this;
+        }
+        if (s.top()->isvisited() == false) {
+            s.top()->setVisited();
             push_children();
         }
-        if(s.empty()){
+        if (s.empty()) {
             s.push(nullptr);
         }
         return *this;
@@ -157,16 +170,19 @@ template <typename T>
 class min_heap_iterator {
    private:
     vector<node<T>*> heap;
-    public:
+    int index;
+
+   public:
     min_heap_iterator(node<T>* root) {
-        if(root == nullptr){
+        if (root == nullptr) {
             heap.push_back(nullptr);
             return;
         }
-        for(auto dfs = dfs_iterator<T>(root); *dfs != nullptr; ++dfs){
-            heap.push_back(*dfs);
+        for (auto bfs = bfs_iterator<T>(root); bfs != bfs_iterator<T>(nullptr); ++bfs) {
+            heap.push_back(bfs.operator->());
         }
         std::make_heap(heap.begin(), heap.end(), [](node<T>* a, node<T>* b) { return a->getData() > b->getData(); });
+        index = 0;
     }
     T& operator*() {
         if (heap[0] == nullptr) {
@@ -181,10 +197,15 @@ class min_heap_iterator {
         if (heap[0] == nullptr) {
             return *this;
         }
-        std::pop_heap(heap.begin(), heap.end(), [](node<T>* a, node<T>* b) { return a->getData() > b->getData(); });
-        if(heap.empty()){
+        if(index == heap.size() - 1){
+            heap[0] = nullptr;
+            return *this;
+        }
+        std::pop_heap(heap.begin(), heap.end()-index, [](node<T>* a, node<T>* b) { return a->getData() > b->getData(); });
+        if (heap.empty()) {
             heap.push_back(nullptr);
         }
+        index++;
         return *this;
     }
     bool operator==(const min_heap_iterator& other) {
@@ -194,6 +215,3 @@ class min_heap_iterator {
         return !(*this == other);
     }
 };
-    
-
-        

@@ -11,24 +11,28 @@ class node {
         T data;
         node<T>* parent;
         std::vector<node<T>*> children;
-        bool visited = false;
+        bool visited ;
 
     public:
-        node(T data){
-            this->data = data;
+        node(T d){
+            this->data = d;
             this->parent = nullptr;
+            this->visited = false;
         }
-        T getData(){
+        T& getData(){
             return this->data;
         }
-        void setData(T data){
-            this->data = data;
+        const T& getData() const{
+            return this->data;
+        }
+        void setData(T d){
+            this->data = d;
         }
         node<T>* getParent(){
             return this->parent;
         }
-        void setParent(node<T>* parent){
-            this->parent = parent;
+        void setParent(node<T>* p){
+            this->parent = p;
         }
         std::size_t getNumChildren(){
             return this->children.size();
@@ -42,8 +46,8 @@ class node {
         bool isvisited(){
             return this->visited;
         }
-        void setVisited(bool visited){
-            this->visited = visited;
+        void setVisited(bool b = true){
+            this->visited = b;
         }
         void removeChildren(){
             this->children.clear();

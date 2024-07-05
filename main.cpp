@@ -12,7 +12,7 @@ int main() {
     window.setFramerateLimit(60);
 
 
-    tree<int,10> t;
+    tree<int,4> t;
     node<int>* root = new node<int>(0);
     t.add_root(root);
 
@@ -44,6 +44,44 @@ int main() {
         cout << child->getData() << " ";
     }
     cout << endl;
+
+    cout << "preorder traversal: ";
+    for(auto it = t.begin_pre_order(); it != t.end_pre_order(); ++it){
+        cout << *it << " ";
+    }
+    cout << endl;
+
+    cout << "inorder traversal: ";
+    for(auto it = t.begin_in_order(); it != t.end_in_order(); ++it){
+        cout << *it << " ";
+    }
+    cout << endl;
+
+    cout << "postorder traversal: ";
+    for(auto it = t.begin_post_order(); it != t.end_post_order(); ++it){
+        cout << *it << " ";
+    }
+    cout << endl;
+
+    cout << "dfs scan: ";
+    for(auto it = t.begin_dfs_scan(); it != t.end_dfs_scan(); ++it){
+        cout << it->getData() << " ";
+    }
+    cout << endl;
+
+    cout << "bfs scan: ";
+    for(auto it = t.begin_bfs_scan(); it != t.end_bfs_scan(); ++it){
+        cout << it->getData() << " ";
+    }
+    cout << endl;
+
+    cout << "min heap: ";
+    for(auto it = t.begin_my_heap(); it != t.end_my_heap(); ++it){
+        cout << it->getData() << " ";
+    }
+    cout << endl;
+
+  
 
     while (window.isOpen()) {
         sf::Event event;

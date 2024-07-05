@@ -13,7 +13,7 @@ run: main
 main: main.o
 	$(CXX) $(CXXFLAGS) -o main main.o $(LDFLAGS)
 
-main.o: main.cpp tree.hpp node.hpp
+main.o: main.cpp tree.hpp node.hpp iterators.hpp
 	$(CXX) $(CXXFLAGS) -c main.cpp
 
 clean:

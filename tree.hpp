@@ -71,9 +71,9 @@ class tree {
         }
     }
     ~tree() {
-        bfs_iterator<T, k> it = begin_bfs_scan();
+        bfs_iterator<T> it = begin_bfs_scan();
         while (it != end_bfs_scan()) {
-            delete *it; 
+            it->removeChildren();
             ++it;
         }
     }
@@ -124,22 +124,22 @@ class tree {
     index_iterator<T, k> end_post_order() {
         return end_index_iterator();
     }
-    dfs_iterator<T, k> begin_dfs_scan() {
-        return dfs_iterator<T, k>(root);
+    dfs_iterator<T> begin_dfs_scan() {
+        return dfs_iterator<T>(root);
     }
-    dfs_iterator<T, k> end_dfs_scan() {
-        return dfs_iterator<T, k>(nullptr);
+    dfs_iterator<T> end_dfs_scan() {
+        return dfs_iterator<T>(nullptr);
     }
-    bfs_iterator<T, k> begin_bfs_scan() {
-        return bfs_iterator<T, k>(root);
+    bfs_iterator<T> begin_bfs_scan() {
+        return bfs_iterator<T>(root);
     }
-    bfs_iterator<T, k> end_bfs_scan() {
-        return bfs_iterator<T, k>(nullptr);
+    bfs_iterator<T> end_bfs_scan() {
+        return bfs_iterator<T>(nullptr);
     }
-    min_heap_iterator<T, k> begin_my_heap() {
-        return min_heap_iterator<T, k>(root);
+    min_heap_iterator<T> begin_my_heap() {
+        return min_heap_iterator<T>(root);
     }
-    min_heap_iterator<T, k> end_my_heap() {
-        return min_heap_iterator<T, k>(nullptr);
+    min_heap_iterator<T> end_my_heap() {
+        return min_heap_iterator<T>(nullptr);
     }
 };
