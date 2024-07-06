@@ -9,15 +9,26 @@ all: main
 run: main
 	./main
 
+run_test: test
+	./test
 
-main: main.o
+main: main.o complex.o
 	$(CXX) $(CXXFLAGS) -o main main.o $(LDFLAGS)
 
-main.o: main.cpp tree.hpp node.hpp iterators.hpp
+test: test.o complex.o
+	$(CXX) $(CXXFLAGS) -o test test.o $(LDFLAGS)
+
+main.o: main.cpp tree.hpp node.hpp iterators.hpp complex.hpp
 	$(CXX) $(CXXFLAGS) -c main.cpp
 
-clean:
-	$(RM) main main.o
+test.o: test.cpp tree.hpp node.hpp iterators.hpp complex.hpp
+	$(CXX) $(CXXFLAGS) -c test.cpp
 
-.PHONY: all run clean 
+complex.o: complex.cpp complex.hpp
+	$(CXX) $(CXXFLAGS) -c complex.cpp
+
+clean:
+	$(RM) main main.o test test.o
+
+.PHONY: all run clean run_test test.o main.o test main
 
