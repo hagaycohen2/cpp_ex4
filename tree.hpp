@@ -71,10 +71,8 @@ class tree {
         }
     }
     ~tree() {
-        bfs_iterator<T> it = begin_bfs_scan();
-        while (it != end_bfs_scan()) {
-            it->removeChildren();
-            ++it;
+        if (root) {
+            delete root;
         }
     }
 

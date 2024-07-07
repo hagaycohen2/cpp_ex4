@@ -19,6 +19,11 @@ class node {
             this->parent = nullptr;
             this->visited = false;
         }
+        ~node(){
+            for(auto child : this->children){
+                delete child;
+            }
+        }
         T& getData(){
             return this->data;
         }

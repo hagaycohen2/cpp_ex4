@@ -1,32 +1,24 @@
 #include "complex.hpp"
 
-Complex::Complex(double r, double i) : real(r), imag(i) {}
 
-double Complex::getReal() {
-    return this->real;
-}
-
-double Complex::getImag() {
-    return this->imag;
-}
-
-string Complex::to_string() const {
-    if (real == 0 && imag == 0) {
+string Complex::to_str() const {
+    std::ostringstream oss;
+    if (real == 0 || imag == 0) {
         if (real != 0) {
-            return std::to_string(real);
+            oss << real;
         } else if (imag != 0) {
-            return std::to_string(imag) + "i";
+            oss << imag << "i";
         } else {
-            return "0";
+            oss << "0";
+        }
+    } else {
+        if (imag > 0) {
+            oss << real << " + " << imag << "i";
+        } else {
+            oss << real << " - " << -imag << "i";
         }
     }
-    string ans = std::to_string(real);
-    if (imag > 0) {
-        ans += " + " + std::to_string(imag) + "i";
-    } else {
-        ans += " - " + std::to_string(-imag) + "i";
-    }
-    return ans;
+    return oss.str();
 }
 
 bool Complex::operator<(const Complex& other) const {
@@ -36,16 +28,13 @@ bool Complex::operator>(const Complex& other) const {
     return other < *this;
 }
 bool Complex::operator==(const Complex& other) const {
-    return (!(other < *this) && !(*this < other));
+    return real == other.real && imag == other.imag;
 }
 bool Complex::operator!=(const Complex& other) const {
     return !(*this == other);
 }
 
-ostream& operator<<(std::ostream& os, const Complex& c) {
-    os << c.to_string();
-    return os;
+// Function to convert Complex to string
+string to_string(const Complex& c) {
+    return c.to_str();
 }
-
-
-
