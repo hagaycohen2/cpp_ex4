@@ -31,3 +31,7 @@ Note that for Complex numbers, the min heap is defined by the norm of the comple
 
 ## Gui screenshot
 ![alt text](<Screenshot 2024-07-07 134103.png>)
+
+### Author
+Hagay Cohen
+Hagaycohen2@gmail.com
