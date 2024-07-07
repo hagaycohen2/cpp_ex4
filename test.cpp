@@ -10,50 +10,6 @@
 #include "tree.hpp"
 using namespace std;
 
-/**
-tree<int> binary_int_tree;
-tree<string> binary_string_tree;
-tree<Complex> binary_complex_tree;
-
-tree<int, 1> unary_tree;
-tree<int, 4> quad_tree;
-tree<int, 10> ten_tree;
-
-node<int>* int_root = new node<int>(0);
-node<int>* int_1 = new node<int>(1);
-node<int>* int_2 = new node<int>(2);
-node<int>* int_3 = new node<int>(3);
-node<int>* int_4 = new node<int>(4);
-node<int>* int_5 = new node<int>(5);
-node<int>* int_6 = new node<int>(6);
-node<int>* int_7 = new node<int>(7);
-node<int>* int_8 = new node<int>(8);
-node<int>* int_9 = new node<int>(9);
-node<int>* int_10 = new node<int>(10);
-node<int>* int_11 = new node<int>(11);
-node<int>* int_12 = new node<int>(12);
-node<int>* int_13 = new node<int>(13);
-node<int>* int_14 = new node<int>(14);
-node<int>* int_15 = new node<int>(15);
-node<int>* int_16 = new node<int>(16);
-
-node<string>* string_root = new node<string>("root");
-node<string>* string_1 = new node<string>("child1");
-node<string>* string_2 = new node<string>("child2");
-node<string>* string_3 = new node<string>("child3");
-node<string>* string_4 = new node<string>("child4");
-node<string>* string_5 = new node<string>("child5");
-node<string>* string_6 = new node<string>("child6");
-node<string>* string_7 = new node<string>("child7");
-
-node<Complex>* complex_root = new node<Complex>(Complex(1, 2));
-node<Complex>* complex_1 = new node<Complex>(Complex(3, 4));
-node<Complex>* complex_2 = new node<Complex>(Complex(5, 0));
-node<Complex>* complex_3 = new node<Complex>(Complex(0, -5));
-node<Complex>* complex_4 = new node<Complex>(Complex(0, 0));
-node<Complex>* complex_5 = new node<Complex>(Complex(0, 0));
-
-*/
 
 // Tree functions
 

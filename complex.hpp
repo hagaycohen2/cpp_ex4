@@ -1,3 +1,8 @@
+/**
+ * Author: Hagay Cohen
+ * Email: hagaycohen2@gmail.com
+ */
+
 #pragma once
 #include <string>
 #include <iostream>

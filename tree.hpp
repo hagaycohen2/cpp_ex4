@@ -1,3 +1,8 @@
+/**
+ * Author: Hagay Cohen
+ * Email: hagaycohen2@gmail.com
+ */
+
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <cmath>
@@ -7,11 +12,13 @@
 
 #include "node.hpp"
 #include "iterators.hpp"
+#include "complex.hpp"
 
 using sf::RenderWindow;
 using std::cout;
 using std::endl;
 using std::vector;
+using std::to_string;
 
 template <typename T, size_t k = 2>
 class tree {
@@ -24,15 +31,15 @@ class tree {
         if (!n) return;
 
         // Draw the current node
-        sf::CircleShape shape(20);
-        shape.setFillColor(sf::Color::Green);
+        sf::CircleShape shape(25);
+        shape.setFillColor(sf::Color::Cyan);
         shape.setPosition(x, y);
         window.draw(shape);
 
         // Draw the node's data
         sf::Text text;
-        text.setString(std::to_string(n->getData()));
-        text.setCharacterSize(12);  
+        text.setString(to_string(n->getData()));
+        text.setCharacterSize(14);  
         text.setFont(font);
         text.setFillColor(sf::Color::Black);
 
@@ -54,7 +61,7 @@ class tree {
     for (auto& child : children) {
         // Draw line to child
         sf::Vertex line[] = {
-            sf::Vertex(sf::Vector2f(x + 20, y + 25)),
+            sf::Vertex(sf::Vector2f(x + 20, y + 30)),
             sf::Vertex(sf::Vector2f(childX + 20, y + 100))};
         window.draw(line, 2, sf::Lines);
 

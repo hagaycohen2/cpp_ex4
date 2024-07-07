@@ -1,3 +1,6 @@
+ # Author: Hagay Cohen
+ # Email: hagaycohen2@gmail.com
+
 
 CXX = clang++
 CXXFLAGS = -std=c++11 -Wall -g
@@ -7,6 +10,9 @@ RM = rm -f
 all: main
 
 run: main
+	./main
+
+tree: main
 	./main
 
 run_test: test
@@ -28,7 +34,7 @@ complex.o: complex.cpp complex.hpp
 	$(CXX) $(CXXFLAGS) -c complex.cpp
 
 clean:
-	$(RM) main test *.o
+	$(RM) main tree test *.o
 
-.PHONY: all run clean run_test
+.PHONY: all run clean run_test tree
 

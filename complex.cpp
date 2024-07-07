@@ -1,5 +1,9 @@
-#include "complex.hpp"
+/**
+ * Author: Hagay Cohen
+ * Email: hagaycohen2@gmail.com
+ */
 
+#include "complex.hpp"
 
 string Complex::to_str() const {
     std::ostringstream oss;
@@ -7,14 +11,25 @@ string Complex::to_str() const {
         if (real != 0) {
             oss << real;
         } else if (imag != 0) {
-            oss << imag << "i";
+            if (imag == 1)
+                oss << "i";
+            else if (imag == -1)
+                oss << "-i";
+            else
+                oss << imag << "i";
         } else {
             oss << "0";
         }
     } else {
         if (imag > 0) {
-            oss << real << " + " << imag << "i";
+            if(imag == 1)
+                oss << real << " + i";
+            else
+                oss << real << " + " << imag << "i";
         } else {
+            if(imag == -1)
+                oss << real << " - i";
+            else
             oss << real << " - " << -imag << "i";
         }
     }

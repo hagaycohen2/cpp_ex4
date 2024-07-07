@@ -1,3 +1,8 @@
+/**
+ * Author: Hagay Cohen
+ * Email: hagaycohen2@gmail.com
+ */
+
 #pragma once
 #include <queue>
 #include <stack>
